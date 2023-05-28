@@ -1,12 +1,30 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { MyContext } from '../Context'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { UserIcon, Cog6ToothIcon, ArrowRightIcon, } from "react-native-heroicons/solid"
 import { ClockIcon, SpeakerWaveIcon } from "react-native-heroicons/outline"
+import CustomModal from '../components/CustomModal'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
-    const { val } = useContext(MyContext)
+    const [timerModalVisibility, setTimerModalVisibility] = useState(false)
+    const [soundModalVisibility, setSoundModalVisibility] = useState(false)
+    const navigation = useNavigation()
+
+    const toggleTimerModalVisibility = () => {
+        setTimerModalVisibility(!timerModalVisibility)
+    }
+
+    const toggleSoundModalVisibility = () => {
+        setSoundModalVisibility(!soundModalVisibility)
+    }
+
+    const config = {
+        velocityThreshold: 0.3,
+        directionalOffsetThreshold: 80
+    };
+
     return (
         <SafeAreaView>
             <View className='h-full px-5 py-5'>
@@ -23,14 +41,25 @@ const Home = () => {
                 </View>
 
                 {/* Start button */}
-                <TouchableOpacity className='mt-52 items-center '>
+                <TouchableOpacity onPress={() => navigation.navigate('MeditationTimer')} className='mt-52 items-center '>
                     <View className='shadow-lg shadow-black w-52 h-52 justify-center rounded-tl-[200px] rounded-br-[200px] rounded-tr-[150px] rounded-bl-[130px] bg-[#2e2e2e]'>
-                        <Text className='text-center text-white text-2xl font-bold'>Start</Text>
+                        <Text className='text-center text-white text-2xl font-bold'>Start!</Text>
                     </View>
                 </TouchableOpacity>
 
+
                 {/* Timer setting */}
-                <TouchableOpacity className='items-center mt-10 '>
+
+                <CustomModal
+                    isVisible={timerModalVisibility}
+                    onSwipe={setTimerModalVisibility}
+                >
+                    <View className='bg-white'>
+                        <Text>Timer Modal</Text>
+                    </View>
+                </CustomModal>
+
+                <TouchableOpacity onPress={toggleTimerModalVisibility} className='items-center mt-10 '>
                     <View className='px-4 py-2 flex-row w-[300px] bg-[#e4e4e4] items-center'>
                         <View>
                             <ClockIcon size={25} color={'black'} />
@@ -40,11 +69,18 @@ const Home = () => {
                             <ArrowRightIcon size={25} color={'black'} />
                         </View>
                     </View>
-
                 </TouchableOpacity>
 
                 {/* Sound setting */}
-                <TouchableOpacity className='items-center mt-4'>
+                <CustomModal
+                    isVisible={soundModalVisibility}
+                    onSwipe={setSoundModalVisibility}
+                >
+                    <View className='bg-white'>
+                        <Text>Sound Modal</Text>
+                    </View>
+                </CustomModal>
+                <TouchableOpacity onPress={toggleSoundModalVisibility} className='items-center mt-4'>
                     <View className='px-4 py-2 flex-row w-[300px] bg-[#e4e4e4] items-center'>
                         <View>
                             <SpeakerWaveIcon size={25} color={'black'} />
