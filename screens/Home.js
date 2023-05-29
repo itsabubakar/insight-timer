@@ -6,6 +6,7 @@ import { UserIcon, Cog6ToothIcon, ArrowRightIcon, } from "react-native-heroicons
 import { ClockIcon, SpeakerWaveIcon } from "react-native-heroicons/outline"
 import CustomModal from '../components/CustomModal'
 import { useNavigation } from '@react-navigation/native'
+import SelectTimer from '../components/SelectTimer'
 
 const Home = () => {
     const [timerModalVisibility, setTimerModalVisibility] = useState(false)
@@ -54,9 +55,7 @@ const Home = () => {
                     isVisible={timerModalVisibility}
                     onSwipe={setTimerModalVisibility}
                 >
-                    <View className='bg-white'>
-                        <Text>Timer Modal</Text>
-                    </View>
+                    <SelectTimer />
                 </CustomModal>
 
                 <TouchableOpacity onPress={toggleTimerModalVisibility} className='items-center mt-10 '>

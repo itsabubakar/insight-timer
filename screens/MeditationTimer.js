@@ -7,8 +7,6 @@ import { PauseIcon, PlayIcon } from 'react-native-heroicons/outline'
 const MeditationTimer = () => {
 
     const [time, setTime] = useState(60)
-    let key = Math.floor(Math.random() * 60)
-
     const [timerPlaying, setTimerPlaying] = useState(true)
 
 
@@ -37,7 +35,7 @@ const MeditationTimer = () => {
                     strokeWidth={14}
                     trailStrokeWidth={6}
                     isPlaying={timerPlaying}
-                    key={key}
+                    key={1}
                     duration={time}
                     colors={'#fff'}
                     onComplete={() => console.log('completed')}
@@ -45,7 +43,7 @@ const MeditationTimer = () => {
                     {({ remainingTime }) => <Text className='text-white text-4xl'>{children(remainingTime)}</Text>}
                 </CountdownCircleTimer>
                 </View>
-                <View className='mt-auto pb-20 items-center'>
+                <View className='mt-auto pb-20 items-center z-50'>
                     {timerPlaying ?
                         <TouchableOpacity className='border-2 border-white p-2 rounded-full' onPress={() => setTimerPlaying(!timerPlaying)}>
                             <PauseIcon size={70} color={'#fff'} />

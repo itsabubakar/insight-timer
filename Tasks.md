@@ -16,7 +16,7 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - []
 
 ### Modals
-- [] Build timer select modal
+- [x] Build timer select modal
 - [] Build music select modal
 - [] Build discard session modal
 - []
@@ -28,8 +28,11 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Create custom modal component
 
 ### Functionality
+- [x] Added circular range for timer
 - [] Build select time functionality
-- [] Set pausing and playing functionality
+- [x] Set pausing and playing functionality
 - [] Save session data functionality
+- [] Set up cancel timer select button
+- [] Set up ok timer button
 - []
 - []
