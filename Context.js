@@ -5,9 +5,12 @@ import { View, Text } from 'react-native'
 const MyContext = createContext('')
 
 const ContextProvider = ({ children }) => {
-    const [val, setVal] = useState(5)
+    const [timer, setTimer] = useState(10)
     return (
-        <MyContext.Provider value={{ val }}>
+        <MyContext.Provider value={{
+            timer,
+            setTimer,
+        }}>
             {children}
         </MyContext.Provider>
     )

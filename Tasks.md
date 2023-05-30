@@ -10,16 +10,16 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [] Build Splash screen
 - [X] Build Home screen
 - [x] Build meditation timer running screen
-- [] Build settings screen
+- [x] Build settings screen
+- [x] Build profile screen
 - [] Build meditation done screen
-- [] Build profile screen
 - []
 
 ### Modals
 - [x] Build timer select modal
+- [x] Build custom modal showing discard modal & reset data modal
 - [] Build music select modal
-- [] Build discard session modal
-- []
+- [x] Build progress info components
 - []
 - []
 - []
@@ -28,11 +28,11 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Create custom modal component
 
 ### Functionality
+- [x] Build select time functionality
 - [x] Added circular range for timer
-- [] Build select time functionality
 - [x] Set pausing and playing functionality
+- [x] Set up cancel timer select button
+- [x] Set up ok timer button
 - [] Save session data functionality
-- [] Set up cancel timer select button
-- [] Set up ok timer button
 - []
 - []

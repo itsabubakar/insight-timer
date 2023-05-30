@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { PauseIcon, PlayIcon } from 'react-native-heroicons/outline'
+import { MyContext } from '../Context'
 
 const MeditationTimer = () => {
-
-    const [time, setTime] = useState(60)
+    const { timer } = useContext(MyContext)
+    const [time, setTime] = useState(timer * 60)
     const [timerPlaying, setTimerPlaying] = useState(true)
 
 
