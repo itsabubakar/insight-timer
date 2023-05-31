@@ -4,9 +4,12 @@ import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
 import { useContext, useState } from 'react'
 import { PauseIcon, PlayIcon } from 'react-native-heroicons/outline'
 import { MyContext } from '../Context'
+import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const MeditationTimer = () => {
-    const { timer } = useContext(MyContext)
+    const navigation = useNavigation()
+    const { timer, meditationData, setMeditationData } = useContext(MyContext)
     const [time, setTime] = useState(timer * 60)
     const [timerPlaying, setTimerPlaying] = useState(true)
 
@@ -21,28 +24,50 @@ const MeditationTimer = () => {
             return `${minutes}:${paddedSec}`
         }
         return `${minutes}:${seconds}`
+    }
+
+    const value = [
+        {
+            date: '1st October',
+            session: 10,
+        }
+    ]
+
+    let data = [...meditationData, ...value]
 
 
+
+    const handleSubmit = async () => {
+        setMeditationData(data)
+        try {
+            const jsonValue = JSON.stringify(meditationData)
+            await AsyncStorage.setItem('meditation_data', jsonValue)
+        } catch (e) {
+            console.log(e);
+        }
+        navigation.navigate('MeditationDone')
+        console.log('completed')
+        console.log(data)
     }
 
 
     return (
         <SafeAreaView>
-
             <View className='h-full bg-[#2e2e2e] pt-40'>
-                <View className='items-center'><CountdownCircleTimer
-                    size={280}
-                    trailColor={'#b4b4b4'}
-                    strokeWidth={14}
-                    trailStrokeWidth={6}
-                    isPlaying={timerPlaying}
-                    key={1}
-                    duration={time}
-                    colors={'#fff'}
-                    onComplete={() => console.log('completed')}
-                >
-                    {({ remainingTime }) => <Text className='text-white text-4xl'>{children(remainingTime)}</Text>}
-                </CountdownCircleTimer>
+                <View className='items-center'>
+                    <CountdownCircleTimer
+                        size={280}
+                        trailColor={'#b4b4b4'}
+                        strokeWidth={14}
+                        trailStrokeWidth={6}
+                        isPlaying={timerPlaying}
+                        key={1}
+                        duration={time}
+                        colors={'#fff'}
+                        onComplete={handleSubmit}
+                    >
+                        {({ remainingTime }) => <Text className='text-white text-4xl'>{children(remainingTime)}</Text>}
+                    </CountdownCircleTimer>
                 </View>
                 <View className='mt-auto pb-20 items-center z-50'>
                     {timerPlaying ?
@@ -53,7 +78,7 @@ const MeditationTimer = () => {
                             <TouchableOpacity className='w-24 border-2 border-white p-2 rounded-full items-center' onPress={() => setTimerPlaying(!timerPlaying)}>
                                 <PlayIcon size={70} color={'#fff'} />
                             </TouchableOpacity>
-                            <TouchableOpacity className='bg-blue-400 py-3 mt-8 rounded-md  w-48'>
+                            <TouchableOpacity onPress={handleSubmit} className='bg-blue-400 py-3 mt-8 rounded-md  w-48'>
                                 <Text className='text-white text-2xl text-center font-bold'>END</Text>
                             </TouchableOpacity>
                         </View>}

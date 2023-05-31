@@ -15,12 +15,12 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [] Build meditation done screen
 - []
 
-### Modals
+### Modals & Components
 - [x] Build timer select modal
 - [x] Build custom modal showing discard modal & reset data modal
 - [] Build music select modal
 - [x] Build progress info components
-- []
+- []  Calender components
 - []
 - []
 
