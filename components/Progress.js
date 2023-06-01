@@ -1,7 +1,15 @@
 import { View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ProgressInfo from './ProgressInfo'
+import { useContext, useEffect } from 'react'
+import { MyContext } from '../Context'
 const Progress = () => {
+    const { averageSession, numberOfSession } = useContext(MyContext)
+
+    useEffect(() => {
+        console.log('progress');
+    }, [])
+
     return (
         <SafeAreaView>
             <View className='px-5'>
@@ -23,12 +31,12 @@ const Progress = () => {
                 <View className='flex-row justify-between mt-3'>
                     <ProgressInfo
                         header={'Sessions'}
-                        data={'78'}
+                        data={numberOfSession}
                         unit={'Sessions'}
                     />
                     <ProgressInfo
                         header={'Average Session'}
-                        data={'12'}
+                        data={averageSession}
                         unit={'minutes'}
                     />
                 </View>

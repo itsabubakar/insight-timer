@@ -4,39 +4,50 @@ import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Progress from '../components/Progress'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
 const MeditationDone = () => {
     const navigation = useNavigation()
-    const { meditationData, setMeditationData } = useContext(MyContext)
+    const { meditationData, setMeditationData, setAverageSession,
+        setNumberOfSession } = useContext(MyContext)
+
+    let total = 0;
+    let numberOfSess = 0
+    let averageSess = 0
+
+    meditationData.map(({ session }) => {
+        numberOfSess++;
+        total = total + session;
+    })
+
+    if (total) {
+        averageSess = total / numberOfSess;
+    } else {
+        console.log('meditation data empty');
+    }
+
 
 
     const getData = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('meditation_data')
-            if (jsonValue != null) {
-                const value = JSON.parse(jsonValue)
-                console.log(value);
-            } else {
-                console.log('no value');
-            }
-        } catch (e) {
-            // error reading value
-            console.log(e);
-        }
+        console.log(numberOfSess, averageSess);
+        setAverageSession(averageSess)
+        setNumberOfSession(numberOfSess)
     }
-    getData()
+
+    useEffect(() => {
+        getData()
+
+    }, [])
 
     const clearData = async () => {
 
-        try {
-            setMeditationData([])
-            await AsyncStorage.clear()
-            console.log('çleared');
-        } catch (error) {
-            console.log(error);
-        }
+        setMeditationData([])
+        setAverageSession(0)
+        setNumberOfSession(0)
+        await AsyncStorage.clear()
+
     }
+
     return (
         <SafeAreaView>
             <View>

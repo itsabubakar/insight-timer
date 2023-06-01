@@ -18,9 +18,9 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 ### Modals & Components
 - [x] Build timer select modal
 - [x] Build custom modal showing discard modal & reset data modal
-- [] Build music select modal
+- [] Build sound select modal
 - [x] Build progress info components
-- []  Calender components
+- [x]  Calender components
 - []
 - []
 
@@ -33,6 +33,10 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Set pausing and playing functionality
 - [x] Set up cancel timer select button
 - [x] Set up ok timer button
-- [] Save session data functionality
-- []
-- []
+- [x] Save session data functionality
+- [] Set up discard session functionality
+- [] Set up max streak functionality
+- [] Set up current streak checker
+- [] 
+- [] 
+- [] 

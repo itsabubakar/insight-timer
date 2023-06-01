@@ -35,19 +35,18 @@ const MeditationTimer = () => {
 
     let data = [...meditationData, ...value]
 
-
-
     const handleSubmit = async () => {
         setMeditationData(data)
         try {
-            const jsonValue = JSON.stringify(meditationData)
-            await AsyncStorage.setItem('meditation_data', jsonValue)
+            const jsonValue = JSON.stringify(data)
+            console.log(jsonValue);
+            console.log(data);
+            await AsyncStorage.setItem('@storage_Key', jsonValue)
+            navigation.navigate('MeditationDone')
+
         } catch (e) {
             console.log(e);
         }
-        navigation.navigate('MeditationDone')
-        console.log('completed')
-        console.log(data)
     }
 
 

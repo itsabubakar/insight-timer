@@ -19,8 +19,8 @@ export default function App() {
           <Stack.Screen name='Home' component={Home} options={{ headerShown: false }} />
           <Stack.Screen name='MeditationTimer' component={MeditationTimer} options={{ headerShown: false }} />
           <Stack.Screen name='Settings' component={Settings} options={{ headerShown: false }} />
-          <Stack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
           <Stack.Screen name='MeditationDone' component={MeditationDone} options={{ headerShown: false }} />
+          <Stack.Screen name='Profile' component={Profile} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
 
