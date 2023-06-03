@@ -20,7 +20,7 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Build custom modal showing discard modal & reset data modal
 - [] Build sound select modal
 - [x] Build progress info components
-- [x]  Calender components
+- [x] Calender components
 - []
 - []
 
@@ -40,3 +40,4 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [] 
 - [] 
 - [] 
+<!-- $$redbricks99157 -->

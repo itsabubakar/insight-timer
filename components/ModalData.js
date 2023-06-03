@@ -1,7 +1,11 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 const ModalData = ({ header, text, confirmBtnText,
-    modalVisibility, closeModal }) => {
+    modalVisibility, closeModal, modalFunction }) => {
+    const handleClick = () => {
+        modalFunction()
+        closeModal(!modalVisibility)
+    }
     return (
         <SafeAreaView>
             <View className='text-white bg-white rounded-lg px-8 py-6'>
@@ -17,7 +21,7 @@ const ModalData = ({ header, text, confirmBtnText,
                         <Text className='text-lg'>Cancel</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => closeModal(!modalVisibility)}>
+                    <TouchableOpacity onPress={handleClick}>
                         <Text className='text-lg'>{confirmBtnText}</Text>
                     </TouchableOpacity>
                 </View>

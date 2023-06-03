@@ -1,16 +1,28 @@
 import { useNavigation } from '@react-navigation/native'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { View, Text, TouchableOpacity, Switch } from 'react-native'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import CustomModal from '../components/CustomModal'
 import ModalData from '../components/ModalData'
+import { MyContext } from '../Context'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const Settings = () => {
     const navigation = useNavigation()
+    const { setMeditationData, setAverageSession,
+        setNumberOfSession } = useContext(MyContext)
 
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const [resetModal, setResetModal] = useState(false)
+
+    const clearData = async () => {
+        setMeditationData([])
+        setAverageSession(0)
+        setNumberOfSession(0)
+        await AsyncStorage.clear()
+    }
+
     return (
         <SafeAreaView>
 
@@ -26,7 +38,7 @@ const Settings = () => {
                 <View className='px-6 pt-2 pb-6 bg-white mt-4'>
 
                     <View className='flex-row items-center'>
-                        <Text className='text-[17px]'>Screen on while meditating</Text>
+                        <Text className='text-[17px]'>Screen on while meditating!</Text>
                         <View className='ml-auto'>
                             <Switch
                                 trackColor={{ false: '#767577', true: '#81b0ff' }}
@@ -71,6 +83,7 @@ const Settings = () => {
                         onSwipe={() => setResetModal(!resetModal)}
                     >
                         <ModalData
+                            modalFunction={clearData}
                             header={'Reset progress data?'}
                             text={'All of your progress will be reset to 0!'}
                             confirmBtnText={'RESET'}

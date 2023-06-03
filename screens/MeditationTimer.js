@@ -13,7 +13,6 @@ const MeditationTimer = () => {
     const [time, setTime] = useState(timer * 60)
     const [timerPlaying, setTimerPlaying] = useState(true)
 
-
     const children = (remainingTime) => {
         const minutes = Math.floor((remainingTime % 3600) / 60)
         const seconds = remainingTime % 60
@@ -26,28 +25,37 @@ const MeditationTimer = () => {
         return `${minutes}:${seconds}`
     }
 
-    const value = [
-        {
-            date: '1st October',
-            session: 10,
-        }
-    ]
+    let elapsed = 0
 
-    let data = [...meditationData, ...value]
+    let data = []
+
+
+    const handleTimer = () => {
+        const value = [
+            {
+                date: '1st October',
+                session: children(elapsed),
+            }
+        ]
+        data = [...meditationData, ...value]
+
+        handleSubmit()
+    }
 
     const handleSubmit = async () => {
         setMeditationData(data)
+
         try {
             const jsonValue = JSON.stringify(data)
             console.log(jsonValue);
-            console.log(data);
             await AsyncStorage.setItem('@storage_Key', jsonValue)
-            navigation.navigate('MeditationDone')
+            // navigation.navigate('MeditationDone')
 
         } catch (e) {
             console.log(e);
         }
     }
+
 
 
     return (
@@ -63,9 +71,12 @@ const MeditationTimer = () => {
                         key={1}
                         duration={time}
                         colors={'#fff'}
-                        onComplete={handleSubmit}
+                        onComplete={() => console.log('completed')}
                     >
-                        {({ remainingTime }) => <Text className='text-white text-4xl'>{children(remainingTime)}</Text>}
+                        {({ remainingTime, elapsedTime }) => {
+                            elapsed = elapsedTime.toFixed()
+                            return <Text className='text-white text-4xl'>{children(remainingTime)}</Text>
+                        }}
                     </CountdownCircleTimer>
                 </View>
                 <View className='mt-auto pb-20 items-center z-50'>
@@ -77,7 +88,7 @@ const MeditationTimer = () => {
                             <TouchableOpacity className='w-24 border-2 border-white p-2 rounded-full items-center' onPress={() => setTimerPlaying(!timerPlaying)}>
                                 <PlayIcon size={70} color={'#fff'} />
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={handleSubmit} className='bg-blue-400 py-3 mt-8 rounded-md  w-48'>
+                            <TouchableOpacity onPress={handleTimer} className='bg-blue-400 py-3 mt-8 rounded-md  w-48'>
                                 <Text className='text-white text-2xl text-center font-bold'>END</Text>
                             </TouchableOpacity>
                         </View>}

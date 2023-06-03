@@ -3,12 +3,11 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Progress from '../components/Progress'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
 const MeditationDone = () => {
     const navigation = useNavigation()
-    const { meditationData, setMeditationData, setAverageSession,
+    const { meditationData, setAverageSession,
         setNumberOfSession } = useContext(MyContext)
 
     let total = 0;
@@ -39,12 +38,7 @@ const MeditationDone = () => {
 
     }, [])
 
-    const clearData = async () => {
-
-        setMeditationData([])
-        setAverageSession(0)
-        setNumberOfSession(0)
-        await AsyncStorage.clear()
+    const discardSession = () => {
 
     }
 
@@ -67,7 +61,7 @@ const MeditationDone = () => {
                 <Progress />
 
                 <View className='mt-5'>
-                    <TouchableOpacity onPress={clearData} className='bg-[#2e2e2e] mx-5 py-2 rounded'>
+                    <TouchableOpacity onPress={discardSession} className='bg-[#2e2e2e] mx-5 py-2 rounded'>
                         <Text className='text-white text-center text-lg'>Discard Session</Text>
                     </TouchableOpacity>
                 </View>
