@@ -33,8 +33,8 @@ const MeditationTimer = () => {
     const handleTimer = () => {
         const value = [
             {
-                date: '1st October',
-                session: children(elapsed),
+                date: new Date(),
+                session: elapsed,
             }
         ]
         data = [...meditationData, ...value]

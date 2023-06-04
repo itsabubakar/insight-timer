@@ -1,14 +1,10 @@
 import { View, Text } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import ProgressInfo from './ProgressInfo'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { MyContext } from '../Context'
 const Progress = () => {
     const { averageSession, numberOfSession } = useContext(MyContext)
-
-    useEffect(() => {
-        console.log('progress');
-    }, [])
 
     return (
         <SafeAreaView>

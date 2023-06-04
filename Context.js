@@ -14,7 +14,6 @@ const ContextProvider = ({ children }) => {
     const [meditationData, setMeditationData] = useState([])
 
 
-
     const getData = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('@storage_Key')

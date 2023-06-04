@@ -10,6 +10,18 @@ const MeditationDone = () => {
     const { meditationData, setAverageSession,
         setNumberOfSession } = useContext(MyContext)
 
+    const children = (remainingTime) => {
+        const minutes = Math.floor((remainingTime % 3600) / 60)
+        const seconds = remainingTime % 60
+        let paddedSec = seconds
+
+        if (seconds.toString().length < 2) {
+            paddedSec = `${seconds}0`
+            return `${minutes}:${paddedSec}`
+        }
+        return `${minutes}:${seconds}`
+    }
+
     let total = 0;
     let numberOfSess = 0
     let averageSess = 0
@@ -25,11 +37,10 @@ const MeditationDone = () => {
         console.log('meditation data empty');
     }
 
-
+    let formattedAverageSession = children(averageSess.toFixed())
 
     const getData = async () => {
-        console.log(numberOfSess, averageSess);
-        setAverageSession(averageSess)
+        setAverageSession(formattedAverageSession)
         setNumberOfSession(numberOfSess)
     }
 

@@ -12,7 +12,7 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Build meditation timer running screen
 - [x] Build settings screen
 - [x] Build profile screen
-- [] Build meditation done screen
+- [x] Build meditation done screen
 - []
 
 ### Modals & Components

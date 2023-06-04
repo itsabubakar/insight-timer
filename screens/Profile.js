@@ -17,8 +17,20 @@ const Profile = () => {
 
     meditationData.map(({ session }) => {
         numberOfSess++;
-        total = total + session;
+        total = Number(session) + total;
     })
+
+    const children = (remainingTime) => {
+        const minutes = Math.floor((remainingTime % 3600) / 60)
+        const seconds = remainingTime % 60
+        let paddedSec = seconds
+
+        if (seconds.toString().length < 2) {
+            paddedSec = `${seconds}0`
+            return `${minutes}:${paddedSec}`
+        }
+        return `${minutes}:${seconds}`
+    }
 
     if (total) {
         averageSess = total / numberOfSess;
@@ -27,10 +39,20 @@ const Profile = () => {
     }
 
 
+    let formattedAverageSession = children(averageSess.toFixed())
+
+    meditationData.map(({ date }) => {
+        let dateCheck = new Date() - 2
+        console.log(dateCheck);
+    })
+
+    // const calculateStreak = () => {
+
+    // }
+
 
     const getData = async () => {
-        console.log(numberOfSess, averageSess);
-        setAverageSession(averageSess)
+        setAverageSession(formattedAverageSession)
         setNumberOfSession(numberOfSess)
     }
 
