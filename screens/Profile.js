@@ -9,7 +9,7 @@ import { MyContext } from '../Context'
 const Profile = () => {
     const navigation = useNavigation()
     const { meditationData, setAverageSession,
-        setNumberOfSession } = useContext(MyContext)
+        setNumberOfSession, maxStreak, setMaxStreak, streak, setStreak } = useContext(MyContext)
 
     let total = 0;
     let numberOfSess = 0
@@ -41,14 +41,31 @@ const Profile = () => {
 
     let formattedAverageSession = children(averageSess.toFixed())
 
-    meditationData.map(({ date }) => {
-        let dateCheck = new Date() - 2
-        console.log(dateCheck);
+
+    let d1 = new Date()
+    d1.setDate(d1.getDate() - 1)
+
+    let d2 = d1.toJSON().split("T")[0].toString()
+
+
+    let streakD = meditationData.filter(({ date }) => {
+        if (date.toString() == d2) {
+            return date.toString() == d2
+        }
     })
 
-    // const calculateStreak = () => {
 
-    // }
+    if (streakD === undefined || streakD.length == 0) {
+        console.log('User not on a streak');
+        setStreak(0)
+    } else {
+        let streakDate = streak.filter((date) => d2 == date)
+        if (streakDate.length == 0) {
+            setStreak([...streak, d2])
+        }
+        console.log(streak);
+    }
+
 
 
     const getData = async () => {

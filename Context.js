@@ -7,8 +7,8 @@ const MyContext = createContext('')
 
 const ContextProvider = ({ children }) => {
     const [timer, setTimer] = useState(10)
-    const [streak, setStreak] = useState(0)
-    const [maxStreak, setMaxStreak] = useState(0)
+    const [streak, setStreak] = useState([])
+    const [maxStreak, setMaxStreak] = useState([])
     const [averageSession, setAverageSession] = useState(0)
     const [numberOfSession, setNumberOfSession] = useState(0)
     const [meditationData, setMeditationData] = useState([])
@@ -40,6 +40,8 @@ const ContextProvider = ({ children }) => {
             setMeditationData,
             averageSession, setAverageSession,
             numberOfSession, setNumberOfSession,
+            maxStreak, setMaxStreak,
+            streak, setStreak
         }}>
             {children}
         </MyContext.Provider>

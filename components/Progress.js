@@ -4,7 +4,7 @@ import ProgressInfo from './ProgressInfo'
 import { useContext } from 'react'
 import { MyContext } from '../Context'
 const Progress = () => {
-    const { averageSession, numberOfSession } = useContext(MyContext)
+    const { averageSession, numberOfSession, streak } = useContext(MyContext)
 
     return (
         <SafeAreaView>
@@ -14,12 +14,12 @@ const Progress = () => {
                 <View className='flex-row justify-between'>
                     <ProgressInfo
                         header={'Current Streak'}
-                        data={'0'}
+                        data={streak.length}
                         unit={'days'}
                     />
                     <ProgressInfo
                         header={'Max Streak'}
-                        data={'67'}
+                        data={0}
                         unit={'days'}
                     />
                 </View>
