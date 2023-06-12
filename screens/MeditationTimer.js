@@ -33,7 +33,8 @@ const MeditationTimer = () => {
     const handleTimer = () => {
         const value = [
             {
-                date: new Date(),
+                date: new Date(2023, 5, 15).toJSON().split("T")[0],
+                // date: new Date(),
                 session: elapsed,
             }
         ]

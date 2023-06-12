@@ -36,7 +36,7 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [x] Save session data functionality
 - [] Set up discard session functionality
 - [] Set up max streak functionality
-- [] Set up current streak checker
+- [x] Set up current streak checker
 - [] 
 - [] 
 - [] 

@@ -8,7 +8,7 @@ const MyContext = createContext('')
 const ContextProvider = ({ children }) => {
     const [timer, setTimer] = useState(10)
     const [streak, setStreak] = useState([])
-    const [maxStreak, setMaxStreak] = useState([])
+    const [maxStreak, setMaxStreak] = useState(0)
     const [averageSession, setAverageSession] = useState(0)
     const [numberOfSession, setNumberOfSession] = useState(0)
     const [meditationData, setMeditationData] = useState([])
@@ -27,9 +27,26 @@ const ContextProvider = ({ children }) => {
         }
     }
 
+    const streakData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@streak_Key')
+            if (jsonValue != null) {
+                const value = JSON.parse(jsonValue)
+                setMaxStreak(value)
+            } else {
+                console.log('why ar you running');
+                const jsonValue = JSON.stringify(maxStreak)
+                await AsyncStorage.setItem('@streak_Key', jsonValue)
+            }
+        } catch (e) {
+            // error reading value
+            console.log(e);
+        }
+    }
+
     useEffect(() => {
         getData()
-
+        streakData()
     }, [])
 
     return (

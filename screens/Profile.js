@@ -15,6 +15,8 @@ const Profile = () => {
     let numberOfSess = 0
     let averageSess = 0
 
+    // console.log('max:' + maxStreak);
+
     meditationData.map(({ session }) => {
         numberOfSess++;
         total = Number(session) + total;
@@ -45,30 +47,35 @@ const Profile = () => {
     let d1 = new Date()
     d1.setDate(d1.getDate() - 1)
 
+    console.log(streak);
+
+    console.log('d1 ' + d1.toString());
+
     let d2 = d1.toJSON().split("T")[0].toString()
+
+    let d3 = new Date().toJSON().split("T")[0].toString()
+    console.log('d2 ' + d2);
 
 
     let streakD = meditationData.filter(({ date }) => {
+        // console.log(date);
         if (date.toString() == d2) {
             return date.toString() == d2
         }
     })
 
 
-    if (streakD === undefined || streakD.length == 0) {
-        console.log('User not on a streak');
-        setStreak(0)
-    } else {
-        let streakDate = streak.filter((date) => d2 == date)
-        if (streakDate.length == 0) {
-            setStreak([...streak, d2])
-        }
-        console.log(streak);
-    }
-
-
-
     const getData = async () => {
+        if (streakD === undefined || streakD.length == 0) {
+            console.log('User not on a streak');
+            setStreak([d3])
+        } else {
+            let streakDate = streak.filter((date) => d2 == date)
+            setStreak([d2])
+            console.log('more d2' + d2);
+
+            console.log(streak);
+        }
         setAverageSession(formattedAverageSession)
         setNumberOfSession(numberOfSess)
     }
