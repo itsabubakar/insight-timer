@@ -5,7 +5,6 @@ import Home from './screens/Home'
 import MeditationTimer from './screens/MeditationTimer';
 import Settings from './screens/Settings';
 import Profile from './screens/Profile';
-import SaveData from './screens/SaveData'
 import MeditationDone from './screens/MeditationDone';
 
 const Stack = createNativeStackNavigator();

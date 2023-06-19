@@ -7,8 +7,17 @@ import { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
 const MeditationDone = () => {
     const navigation = useNavigation()
-    const { meditationData, setAverageSession,
-        setNumberOfSession } = useContext(MyContext)
+    const { meditationData, averageSession, numberOfSession, setAverageSession, setNumberOfSession } = useContext(MyContext)
+
+
+    let total = 0;
+    let numberOfSess = 0
+    let averageSess = 0
+
+    meditationData.map(({ session }) => {
+        numberOfSess++;
+        total = Number(session) + total;
+    })
 
     const children = (remainingTime) => {
         const minutes = Math.floor((remainingTime % 3600) / 60)
@@ -22,41 +31,32 @@ const MeditationDone = () => {
         return `${minutes}:${seconds}`
     }
 
-    let total = 0;
-    let numberOfSess = 0
-    let averageSess = 0
-
-    meditationData.map(({ session }) => {
-        numberOfSess++;
-        total = total + session;
-    })
-
     if (total) {
         averageSess = total / numberOfSess;
     } else {
         console.log('meditation data empty');
     }
 
-    let formattedAverageSession = children(averageSess.toFixed())
-
-    const getData = async () => {
-        setAverageSession(formattedAverageSession)
+    const setData = () => {
+        setAverageSession(averageSess.toFixed())
         setNumberOfSession(numberOfSess)
+        console.log(averageSession, numberOfSession);
+    }
+
+    const discardSession = () => {
+        console.log(meditationData);
     }
 
     useEffect(() => {
-        getData()
-
+        setData()
     }, [])
 
-    const discardSession = () => {
 
-    }
 
     return (
         <SafeAreaView>
             <View>
-                <TouchableOpacity onPress={navigation.goBack} className='flex-row px-4 py-3 bg-white'>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')} className='flex-row px-4 py-3 bg-white'>
                     <View className='mr-6'>
                         <ArrowLeftIcon size={35} color={'black'} />
                     </View>

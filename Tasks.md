@@ -37,7 +37,8 @@ A meditation timer that can help you on your journey for deeper mindfullness, aw
 - [] Set up discard session functionality
 - [] Set up max streak functionality
 - [x] Set up current streak checker
-- [] 
+- [] Remove streak checker 
 - [] 
 - [] 
 <!-- $$redbricks99157 -->
+<!-- D8E4F0 -->

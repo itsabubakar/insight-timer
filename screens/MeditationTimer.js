@@ -34,7 +34,7 @@ const MeditationTimer = () => {
         const value = [
             {
                 date: new Date(2023, 5, 15).toJSON().split("T")[0],
-                // date: new Date(),
+                // date: new Date().toJSON().split("T")[0],
                 session: elapsed,
             }
         ]
@@ -50,7 +50,7 @@ const MeditationTimer = () => {
             const jsonValue = JSON.stringify(data)
             console.log(jsonValue);
             await AsyncStorage.setItem('@storage_Key', jsonValue)
-            // navigation.navigate('MeditationDone')
+            navigation.navigate('MeditationDone')
 
         } catch (e) {
             console.log(e);

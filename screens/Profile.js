@@ -8,19 +8,26 @@ import { useContext, useEffect } from 'react'
 import { MyContext } from '../Context'
 const Profile = () => {
     const navigation = useNavigation()
-    const { meditationData, setAverageSession,
-        setNumberOfSession, maxStreak, setMaxStreak, streak, setStreak } = useContext(MyContext)
+    const { meditationData, averageSession, numberOfSession, setAverageSession, setNumberOfSession, datesData, setDatesData } = useContext(MyContext)
 
     let total = 0;
     let numberOfSess = 0
     let averageSess = 0
 
-    // console.log('max:' + maxStreak);
+    let dates = []
 
-    meditationData.map(({ session }) => {
+    meditationData.map(({ session, date }) => {
         numberOfSess++;
         total = Number(session) + total;
+        dates.push(date)
     })
+
+    let d = {};
+    dates.forEach((val) => {
+        d[val] = { selected: true };
+    });
+
+    console.log(d);
 
     const children = (remainingTime) => {
         const minutes = Math.floor((remainingTime % 3600) / 60)
@@ -40,53 +47,19 @@ const Profile = () => {
         console.log('meditation data empty');
     }
 
-
-    let formattedAverageSession = children(averageSess.toFixed())
-
-
-    let d1 = new Date()
-    d1.setDate(d1.getDate() - 1)
-
-    console.log(streak);
-
-    console.log('d1 ' + d1.toString());
-
-    let d2 = d1.toJSON().split("T")[0].toString()
-
-    let d3 = new Date().toJSON().split("T")[0].toString()
-    console.log('d2 ' + d2);
-
-
-    let streakD = meditationData.filter(({ date }) => {
-        // console.log(date);
-        if (date.toString() == d2) {
-            return date.toString() == d2
-        }
-    })
-
-
-    const getData = async () => {
-        if (streakD === undefined || streakD.length == 0) {
-            console.log('User not on a streak');
-            setStreak([d3])
-        } else {
-            let streakDate = streak.filter((date) => d2 == date)
-            setStreak([d2])
-            console.log('more d2' + d2);
-
-            console.log(streak);
-        }
-        setAverageSession(formattedAverageSession)
+    const setData = () => {
+        setAverageSession(averageSess.toFixed())
         setNumberOfSession(numberOfSess)
+        // console.log(averageSession, numberOfSession);
     }
-
-    useEffect(() => {
-        getData()
-    }, [])
 
     const handleClick = () => {
         console.log(meditationData);
     }
+
+    useEffect(() => {
+        setData()
+    }, [])
 
 
     return (
@@ -108,7 +81,10 @@ const Profile = () => {
                 <View className='my-5 mx-5 rounded-lg bg-white' style={{ elevation: 1 }}>
                     <View className='p-2'>
 
-                        <Calendar />
+                        <Calendar
+                            markingType={'multi-dot'}
+                            markedDates={d}
+                        />
                     </View>
                 </View>
 

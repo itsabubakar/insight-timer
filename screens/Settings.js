@@ -37,28 +37,6 @@ const Settings = () => {
 
                 <View className='px-6 pt-2 pb-6 bg-white mt-4'>
 
-                    <View className='flex-row items-center'>
-                        <Text className='text-[17px]'>Screen on while meditating!</Text>
-                        <View className='ml-auto'>
-                            <Switch
-                                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                                onValueChange={toggleSwitch}
-                                value={isEnabled}
-                            />
-                        </View>
-                    </View>
-
-                    <View className='flex-row items-center'>
-                        <Text className='text-[17px]'>Play ending bell</Text>
-                        <View className='ml-auto'>
-                            <Switch
-                                trackColor={{ false: '#767577', true: '#81b0ff' }}
-                                onValueChange={toggleSwitch}
-                                value={isEnabled}
-                            />
-                        </View>
-                    </View>
-
                     <View className='mt-2'>
                         <TouchableOpacity onPress={() => console.log('foo')}>
                             <Text className='text-[17px]'>Rate</Text>
