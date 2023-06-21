@@ -33,18 +33,18 @@ const Home = () => {
                 <View className='flex-row justify-between'>
                     {/* Profile */}
                     <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                        <UserIcon size={30} color='black' />
+                        <UserIcon size={30} color='#45a9d8' />
                     </TouchableOpacity>
 
                     {/* Settings */}
                     <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-                        <Cog6ToothIcon size={30} color='black' />
+                        <Cog6ToothIcon size={30} color='#45a9d8' />
                     </TouchableOpacity>
                 </View>
 
                 {/* Start button */}
                 <TouchableOpacity onPress={() => navigation.navigate('MeditationTimer')} className='mt-52 items-center '>
-                    <View className='shadow-lg shadow-black w-52 h-52 justify-center rounded-tl-[200px] rounded-br-[200px] rounded-tr-[150px] rounded-bl-[130px] bg-[#2e2e2e]'>
+                    <View className='shadow-lg shadow-black w-52 h-52 justify-center rounded-tl-[200px] rounded-br-[200px] rounded-tr-[150px] rounded-bl-[130px] bg-[#45a9d8]'>
                         <Text className='text-center text-white text-2xl font-bold'>Start</Text>
                     </View>
                 </TouchableOpacity>
@@ -62,11 +62,11 @@ const Home = () => {
                 <TouchableOpacity onPress={toggleTimerModalVisibility} className='items-center mt-10 '>
                     <View className='px-4 py-2 flex-row w-[300px] bg-[#e4e4e4] items-center'>
                         <View>
-                            <ClockIcon size={25} color={'black'} />
+                            <ClockIcon size={25} color='#45a9d8' />
                         </View>
                         <Text className='ml-auto text-lg mr-4'>{timer} Minutes</Text>
                         <View>
-                            <ArrowRightIcon size={25} color={'black'} />
+                            <ArrowRightIcon size={25} color='#45a9d8' />
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -83,11 +83,11 @@ const Home = () => {
                 <TouchableOpacity onPress={toggleSoundModalVisibility} className='items-center mt-4'>
                     <View className='px-4 py-2 flex-row w-[300px] bg-[#e4e4e4] items-center'>
                         <View>
-                            <SpeakerWaveIcon size={25} color={'black'} />
+                            <SpeakerWaveIcon size={25} color='#45a9d8' />
                         </View>
                         <Text className=' ml-auto text-lg mr-4'>No Sound</Text>
                         <View>
-                            <ArrowRightIcon size={25} color={'black'} />
+                            <ArrowRightIcon size={25} color='#45a9d8' />
                         </View>
                     </View>
 

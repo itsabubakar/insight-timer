@@ -30,7 +30,7 @@ const Settings = () => {
 
                 <TouchableOpacity onPress={navigation.goBack} className='flex-row px-4 py-3 bg-white'>
                     <View className='mr-6'>
-                        <ArrowLeftIcon size={35} color={'black'} />
+                        <ArrowLeftIcon size={35} color={'#45a9d8'} />
                     </View>
                     <Text className='text-xl'>Settings</Text>
                 </TouchableOpacity>
@@ -68,7 +68,7 @@ const Settings = () => {
                             modalVisibility={resetModal}
                             closeModal={setResetModal} />
                     </CustomModal>
-                    <TouchableOpacity onPress={() => setResetModal(!resetModal)} className='bg-[#2e2e2e] w-full py-2 rounded'>
+                    <TouchableOpacity onPress={() => setResetModal(!resetModal)} className='bg-[#45a9d8] w-full py-2 rounded'>
                         <Text className='text-white text-lg text-center'>Clear Progress Data</Text>
                     </TouchableOpacity>
                     <Text className='mt-2'>Version 0.0.1</Text>

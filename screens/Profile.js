@@ -53,10 +53,6 @@ const Profile = () => {
         // console.log(averageSession, numberOfSession);
     }
 
-    const handleClick = () => {
-        console.log(meditationData);
-    }
-
     useEffect(() => {
         setData()
     }, [])
@@ -74,9 +70,7 @@ const Profile = () => {
 
                 <Progress />
 
-                <TouchableOpacity className='mx-5 my-5 bg-black' onPress={handleClick}>
-                    <Text className='text-white text-center py-2'>Get data</Text>
-                </TouchableOpacity>
+
 
                 <View className='my-5 mx-5 rounded-lg bg-white' style={{ elevation: 1 }}>
                     <View className='p-2'>

@@ -58,7 +58,7 @@ const MeditationDone = () => {
             <View>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')} className='flex-row px-4 py-3 bg-white'>
                     <View className='mr-6'>
-                        <ArrowLeftIcon size={35} color={'black'} />
+                        <ArrowLeftIcon size={35} color={'#45a9d8'} />
                     </View>
                 </TouchableOpacity>
 
